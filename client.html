@@ -1,0 +1,28 @@
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+
+<script language="javascript">
+function point_it(event){
+    pos_x = event.offsetX?(event.offsetX):event.pageX-document.getElementById("pointer_div").offsetLeft;
+    pos_y = event.offsetY?(event.offsetY):event.pageY-document.getElementById("pointer_div").offsetTop;
+    document.pointform.form_x.value = pos_x;
+    document.pointform.form_y.value = pos_y;
+
+
+$.get( "client.html", { x: pos_x, y: pos_y } )
+  .done(function( data ) {
+    //displays the data in an alert window
+    alert( data );
+  });
+}
+</script>
+</head>
+<body>
+<form name="pointform" method="post">
+<div id="pointer_div" onclick="point_it(event)" style = "background-image:url('SF.Uber.Static.png');width:640px;height:640px;"></div>
+<input type="hidden" name="form_x" size="4" /><input type="hidden" name="form_y" size="4" />
+</form> 
+</body>
+</html>
